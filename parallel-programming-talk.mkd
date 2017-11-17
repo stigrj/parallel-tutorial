@@ -1,0 +1,478 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+##A crash course in
+#Parallel Programming
+
+.author[Stig Rune Jensen]
+
+.date[22 November 2017, Narvik]
+
+.footnote[Slides available on [GitHub](https://github.com/stigrj/parallel-programming-talk)]
+
+
+---
+
+template: inverse
+# Why?
+
+---
+
+layout: false
+.left-column[
+## Why?
+### Moore's law 
+]
+.right-column[
+- Component doubling every 18 months
+- Inflection point at ~3.5GHz reached early 2000's
+- Continues to grow through multicore chips
+- Cloud platforms and supercomputer clusters
+
+<img src="images/moore.jpg" style="width: 100%; float: left">
+]
+
+---
+
+template: inverse
+# What?
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+]
+.right-column[
+### Parallel programming is hard
+- Difficult to obtain efficiency
+- Difficult to verify correctness
+- Difficult to debug
+- Usually requires new algorithms
+
+<img src="images/bugs.jpg" style="width: 70%; float: left">
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+]
+.right-column[
+### Amdahl's law of parallel efficiency
+- Parallelizing 95% of your code yields __at most__ 20-fold speedup
+
+<img src="images/amdahl.jpg" style="width: 100%; float: left">
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+]
+.right-column[
+### Parallel programming involves
+- Distributing work among CPUs
+- Synchronization between CPUs
+- Distributing memory among machines
+- Communication between machines
+
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+]
+.right-column[
+### Parallel programming involves
+- Distributing work among CPUs
+- Synchronization between CPUs
+- Distributing memory among machines
+- Communication between machines
+
+### It is important to
+- Balance the work load
+- Limit memory duplication
+- Limit communication
+- Avoid bottlenecks
+
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+]
+.right-column[
+<img src="images/parallel_efficiency_1.jpg" style="width: 100%; float: left">
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+]
+.right-column[
+<img src="images/parallel_efficiency_2.jpg" style="width: 100%; float: left">
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+]
+.right-column[
+<img src="images/parallel_efficiency_3.jpg" style="width: 100%; float: left">
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+### Scaling
+]
+.right-column[
+### Parallel scaling
+#### Sequential execution:
+- One woman can make a baby in nine months
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+### Scaling
+]
+.right-column[
+### Parallel scaling
+#### Sequential execution:
+- One woman can make a baby in nine months
+
+#### Strong parallel scaling:
+- Can nine woman make a baby in one month?
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+### Scaling
+]
+.right-column[
+### Parallel scaling
+#### Sequential execution:
+- One woman can make a baby in nine months
+
+#### Strong parallel scaling:
+- Can nine woman make a baby in one month?
+
+#### Weak parallel scaling:
+- Nine woman can make nine babies in nine months
+]
+
+---
+
+layout: false
+.left-column[
+## What?
+### Difficult
+### Efficiency
+### Scaling
+]
+.right-column[
+### Parallel scaling
+#### Sequential execution:
+- One woman can make a baby in nine months
+
+#### Strong parallel scaling:
+- Can nine woman make a baby in one month?
+
+#### Weak parallel scaling:
+- Nine woman can make nine babies in nine months
+
+### Strong scaling is hard to achieve, but usually not necessary
+]
+
+---
+
+template: inverse
+# How?
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+]
+.right-column[
+### Parallelization with OpenMP
+- Shared memory (single machine)
+- Work distribution through loops
+- No data distribution
+- Implicit synchronization
+- No communication
+- Thread based
+
+<img src="images/parallel_omp.jpg" style="width: 60%; float: left">
+
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+]
+.right-column[
+### Pros
+- Relatively simple implementation
+- Quick way to good performance
+- Simple load balancing
+- No communication
+
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+]
+.right-column[
+### Pros
+- Relatively simple implementation
+- Quick way to good performance
+- Simple load balancing
+- No communication
+
+### Cons
+- Small scale parallelization (< ~50 CPUs)
+- Limited memory
+- Dead locks
+- Race conditions
+- Tedious debugging
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+### MPI
+]
+.right-column[
+### Parallelization with Message Passing Interface (MPI)
+- Distributed memory (multiple machines)
+- Work distribution is __user specified__
+- Data distributed is __user specified__
+- Communication necessary
+- Process based
+
+### Master/Slave
+
+<img src="images/parallel_mpi_1.jpg" style="width: 60%; float: left">
+
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+### MPI
+]
+.right-column[
+### Parallelization with Message Passing Interface (MPI)
+- Distributed memory (multiple machines)
+- Work distribution is __user specified__
+- Data distributed is __user specified__
+- Communication necessary
+- Process based
+
+### Data decomposition
+
+<img src="images/parallel_mpi_2.jpg" style="width: 60%; float: left">
+
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+### MPI
+]
+.right-column[
+### Pros
+- Large scale parallelization
+- Extensive memory
+]
+
+---
+
+layout: false
+.left-column[
+## How?
+### OpenMP
+### MPI
+]
+.right-column[
+### Pros
+- Large scale parallelization
+- Extensive memory
+
+### Cons
+- Complicated implementation
+- User specified work/data distribution
+- User specified communication
+- Diffucult to load balance
+- Communication overhead
+]
+
+---
+
+template: inverse
+# Example
+## Calculation of \( \pi \)
+
+---
+
+layout: false
+.left-column[
+## Example
+]
+.right-column[
+### Calculation of \( \pi \) using numerical integration
+- The area of the unit circle is
+\(A = \pi r^2 = \pi \)
+]
+
+---
+
+layout: false
+.left-column[
+## Example
+### Serial
+]
+.right-column[
+Sequential implementation
+]
+
+---
+
+layout: false
+.left-column[
+## Example
+### Serial
+### OpenMP
+]
+.right-column[
+OpenMP features
+]
+
+---
+
+layout: false
+.left-column[
+## Example
+### Serial
+### OpenMP
+]
+.right-column[
+OpenMP implementation
+]
+
+---
+
+layout: false
+.left-column[
+## Example
+### Serial
+### OpenMP
+### MPI
+]
+.right-column[
+MPI features
+]
+
+---
+
+layout: false
+.left-column[
+## Example
+### Serial
+### OpenMP
+### MPI
+]
+.right-column[
+MPI implementation
+]
+
+---
+
+template: inverse
+# How can we help?
+
+---
+
+layout: false
+.left-column[
+## How can we help?
+### AUS
+]
+.right-column[
+
+<img src="images/uninett_sigma2.jpg" style="width: 90%; float: left">
+
+### [Uninett Sigma2](https://www.sigma2.no) offers [Advanced User Support](https://www.sigma2.no/content/advanced-user-support) on:
+- Code parallelization
+- Code optimization
+- Code modularization
+- Improving user interfaces
+- Benchmarking
+- Porting
+
+]
+
+---
+
+name: last-page
+template: inverse
+
+Slideshow created using [remark] and served using [cicero]
+
+[remark]: https://github.com/gnab/remark
+[cicero]: https://github.com/bast/cicero
