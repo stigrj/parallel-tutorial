@@ -356,8 +356,8 @@ layout: false
 
 ### Cons
 - Complicated implementation
-- User specified work/data distribution
-- User specified communication
+- Often require complete rewrite
+- Very much relies on the programmer
 - Diffucult to load balance
 - Communication overhead
 ]
@@ -366,7 +366,6 @@ layout: false
 
 template: inverse
 # Example
-## Calculation of \( \pi \)
 
 ---
 
@@ -375,9 +374,9 @@ layout: false
 ## Example
 ]
 .right-column[
-### Calculation of \( \pi \) using numerical integration
+### Calculation of `\( \pi \)` using numerical integration
 - The area of the unit circle is
-\(A = \pi r^2 = \pi \)
+    `$$ A = \pi r^2 = \pi $$`
 ]
 
 ---
@@ -450,7 +449,7 @@ template: inverse
 
 layout: false
 .left-column[
-## How can we help?
+## Help?
 ### AUS
 ]
 .right-column[
