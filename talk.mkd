@@ -15,7 +15,7 @@ class: center, middle, inverse
 ---
 
 template: inverse
-# Why?
+# Why parallel programming?
 
 ---
 
@@ -36,7 +36,7 @@ layout: false
 ---
 
 template: inverse
-# What?
+# What is parallel programming?
 
 ---
 
@@ -223,7 +223,7 @@ layout: false
 ---
 
 template: inverse
-# How?
+# How to compute in parallel?
 
 ---
 
