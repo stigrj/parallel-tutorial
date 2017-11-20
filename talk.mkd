@@ -384,31 +384,37 @@ layout: false
 
 ---
 
+template: inverse
+# Syntax
+
+---
+
+
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
-### OpenMP features
+### OpenMP parallel section
+- OpenMP features are added to your code using `#pragma omp`
 
 ```c
-#include "omp.h"                         // include OpenMP features
+#include "omp.h"
 
-#pragma omp parallel                     // start parallel section
-{
+#pragma omp parallel
+{ // start parallel section
 
-int my_id = omp_get_thread_num();        // get thread id
-int n_threads = omp_get_num_threads();   // get number of threads
-int max_threads = omp_get_max_threads(); // get max available threads
+// get my thread number
+int my_id = omp_get_thread_num();
 
-#pragma omp for                          // parallelize following loop
-for (int i = 0; i < N; i++) {
-    // hard work
-}
+// get number of threads in this section
+int n_threads = omp_get_num_threads();
 
-}                                        // end parallel section
+// get maximum number of threads
+int max_threads = omp_get_max_threads();
+
+} // end parallel section
 ```
 ]
 
@@ -416,31 +422,39 @@ for (int i = 0; i < N; i++) {
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
 ### OpenMP variables
-
-- __Shared__: all threads have read/write access to the same variable
-- __Private__: all threads have a local copy of the variable
-- Variables defined _inside_ the parallel section are always __private__
+- __shared__: all threads have access to this variable
+- __private__: all threads have a local copy of the variable
+- Variables defined _inside_ the parallel section are __private__
 - Variables defined _outside_ can be passed to the parallel section using
-  * `shared()`: variable is shared to all threads
-  * `private()`: each thread gets an uninitialized local copy
-  * `firstprivate()`: each thread gets a local copy, initialized to its outside value
+  * `shared()`: variable is shared between threads, this is the default
+  * `private()`: each thread gets an uninitialized copy
+  * `firstprivate()`: each thread gets a local copy, 
+    initialized to its outside value
+]
 
+---
+
+layout: false
+.left-column[
+## Syntax
+### OpenMP
+]
+.right-column[
+### OpenMP variables
 ```c
-#include "omp.h"
-
 int a = 1.0;
 int b = 1.0;
 int c = 1.0;
 int d;
 
 #pragma omp parallel shared(a), private(b), firstprivate(c)
-{
+{ // start parallel section
+
 int e = 1.0;
 
 // all variables a-e are available in the parallel section:
@@ -449,7 +463,8 @@ int e = 1.0;
 // c is private, value 1.0
 // d is shared, value uninitialized
 // e is private, value 1.0
-}
+
+} // end parallel section
 ```
 ]
 
@@ -457,35 +472,46 @@ int e = 1.0;
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
 ### OpenMP work sharing
-
 - `for` loops can be distributed among the threads in the following way:
-  * `schedule(static)`: loop is divided in consecutive equally sized batches
-  * `schedule(dynamic, batch)`: loop is distributed dynamically, with `batch` entries at the time
-  * `schedule(guided)`: loop is distributed dynamically with smaller batch sizes towards the end
-- `dynamic` and `guided` will be better load balanced, but has a higher overhead
+  * `schedule(static)`: loop is divided in consecutive equally sized batches,
+    this is the default
+  * `schedule(dynamic, batch)`: loop is distributed dynamically, with `batch`
+    entries at the time
+  * `schedule(guided)`: loop is distributed dynamically with smaller batches
+    towards the end
+- `dynamic` and `guided` will be better load balanced, but have larger overhead
+]
 
+---
+
+layout: false
+.left-column[
+## Syntax
+### OpenMP
+]
+.right-column[
+### OpenMP work sharing
 ```c
-#include "omp.h"
-
 int N = 10000; // total number of iterations
 
 #pragma omp parallel firstprivate(N)
-{
+{ // start parallel section
 
 int n_iter = 0;
+
 #pragma omp for schedule(guided)
 for (int i = 0; i < N; i++) {
     n_iter++;
 }
-// n_iter will now be approximately (but not exactly) equal among all threads
+// n_iter will now be approximately (but not
+// exactly) equal among all threads
 
-}
+} // end parallel section
 ```
 ]
 
@@ -493,8 +519,7 @@ for (int i = 0; i < N; i++) {
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
@@ -502,30 +527,44 @@ layout: false
 - To avoid race conditions on shared variables, the following synchronizations
   are useful
   * `barrier`: all threads must wait until all have reached this point
-  * `critical`: only one thread will execute the enclosed code at the time
+  * `critical`: only one thread will execute the following code at the time
+  * `master`: only master thread will execute the following code
+  * `single`: only one thread will execute the following code
   * `atomic`: only one thread will execute the following operation at the time
+]
 
+---
+
+layout: false
+.left-column[
+## Syntax
+### OpenMP
+]
+.right-column[
+### OpenMP synchronization
 ```c
-#include "omp.h"
-
-#pragma omp parallel        // start parallel section
-{
+#pragma omp parallel
+{ // start parallel section
 
 // this part of the code is execuded in parallel
 
 #pragma omp critical
 {
-// this part of the code only execuded by one thread at the time
+// this part of the code will be executed by all
+// threads, one at the time
 }
 
-#pragma omp barrier         // wait until all threads have reached this point
+// wait until all threads have reached this point
+#pragma omp barrier
 
 // this part of the code is execuded in parallel
 
-#pragma omp atomic
-// this single statement is only execuded by one thread at the time
+#pragma omp single
+{
+// this part of the code will be executed by one thread
+}
 
-}                           // end parallel section
+} // end parallel section
 ```
 ]
 
@@ -533,8 +572,7 @@ layout: false
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
@@ -544,15 +582,20 @@ layout: false
   of the parallel section, the reduction operation is applied to all
   private copies of the variable, and the final result is written to
   the global shared variable.
+]
 
+---
+
+layout: false
+.left-column[
+## Syntax
+### OpenMP
 ```c
-#include "omp.h"
-
 int a = 0;
 int b = 1;
 
 #pragma omp parallel reduction(+:a) reduction(*:b)
-{
+{ // start parallel section
 
 // a is here a private variable, initialized to 0
 // b is here a private variable, initialized to 1
@@ -564,7 +607,7 @@ b *= 2;
 // a = 1
 // b = 2
 
-}
+} // end parallel section
 
 // now a and b have been collected from all threads
 // a = (number of threads)
@@ -576,8 +619,7 @@ b *= 2;
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ]
 .right-column[
@@ -585,6 +627,11 @@ layout: false
 - Compiling using the GNU compiler
 ```bash
 $ gcc -fopenmp source.c
+```
+
+- With optimization
+```bash
+$ gcc -O -fopenmp source.c
 ```
 
 - Running the code using 4 threads
@@ -603,8 +650,7 @@ $ ./a.out
 
 layout: false
 .left-column[
-## Example
-### Serial
+## Syntax
 ### OpenMP
 ### MPI
 ]
