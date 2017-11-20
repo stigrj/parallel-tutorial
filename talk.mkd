@@ -378,8 +378,10 @@ layout: false
 ]
 .right-column[
 ### Calculation of `\( \pi \)` using numerical integration
-- Discretize the integral
-    `$$ \int_0^1 \frac{1}{1+x^2} = \arctan{1} = \frac{\pi}{4} $$`
+`$$ \int_0^1 \frac{1}{1+x^2} = \frac{\pi}{4} $$`
+
+<img src="images/numerical_integration.jpg" style="width: 100%; float: left">
+
 ]
 
 ---
