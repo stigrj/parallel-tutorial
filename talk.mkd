@@ -378,8 +378,8 @@ layout: false
 ]
 .right-column[
 ### Calculation of `\( \pi \)` using numerical integration
-- The area of the unit circle is
-    `$$ A = \pi r^2 = \pi $$`
+- Discretize the integral
+    `$$ \int_0^1 \frac{1}{1+x^2} = \arctan{1} = \frac{\pi}{4} $$`
 ]
 
 ---
@@ -541,7 +541,7 @@ layout: false
   * `barrier`: __all__ threads must wait until __all__ threads have reached this point
   * `critical`: __all__ threads will execute the following code, but only __one__ at the time
   * `master`: only __master__ thread will execute the following code
-  * `single`: only __one__ thread will execute the following code
+  * `single`: only __one__ (random) thread will execute the following code
   * `atomic`: __all__ threads will execute the following __single operation__, but only __one__ at the time
 ]
 
