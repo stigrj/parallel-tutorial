@@ -65,7 +65,8 @@ layout: false
 ]
 .right-column[
 ### Amdahl's law of parallel efficiency
-- Parallelizing 95% of your code yields __at most__ 20-fold speedup
+- Parallelizing 95% of the work load in your code yields
+  __at most__ a 20-fold speedup
 
 <img src="images/amdahl.jpg" style="width: 100%; float: left">
 ]
@@ -323,7 +324,7 @@ layout: false
 - Communication necessary
 - Process based
 
-### Data decomposition strategy
+### Domain (data) decomposition strategy
 
 <img src="images/parallel_mpi_2.jpg" style="width: 60%; float: left">
 
@@ -376,8 +377,11 @@ layout: false
 ## Example
 ]
 .right-column[
-### Calculation of `\( \pi \)` using numerical integration
-`$$ \int_0^1 \frac{1}{1+x^2} dx = \frac{\pi}{4} $$`
+### Calculation of `\( \pi \)` through the integral
+`$$ \frac{\pi}{4} = \int_0^1 \frac{1}{1+x^2} dx $$`
+
+### Numerical approximation
+`$$ \frac{\pi}{4} \approx \sum_i^N \frac{1}{1+x_i^2} dx_i $$`
 
 <img src="images/numerical_integral.jpg" style="width: 70%; float: left">
 
