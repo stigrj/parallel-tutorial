@@ -380,8 +380,8 @@ layout: false
 ### Calculation of `\( \pi \)` through the integral
 `$$ \frac{\pi}{4} = \int_0^1 \frac{1}{1+x^2} dx $$`
 
-### Numerical approximation
-`$$ \frac{\pi}{4} \approx \sum_i^N \frac{1}{1+x_i^{\ast 2}} \Delta x_i $$`
+### Numerical approximation `\( f(x) = \frac{1}{1+x^2} \)`
+`$$ \frac{\pi}{4} \approx \sum_i^N f(x_i^\ast) \Delta x_i $$`
 
 <img src="images/numerical_integral.jpg" style="width: 70%; float: left">
 
