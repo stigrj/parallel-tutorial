@@ -240,7 +240,6 @@ layout: false
 - Shared memory (single machine)
 - Work distribution through loops
 - No data distribution
-- Implicit synchronization
 - No communication
 - Thread based
 
@@ -619,7 +618,7 @@ int b = 1;
 a += 1;
 b *= 2;
 
-// private variable are updated to
+// private variables are updated to
 // a = 1
 // b = 2
 
