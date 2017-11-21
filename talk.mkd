@@ -377,10 +377,10 @@ layout: false
 ## Example
 ]
 .right-column[
-### Calculation of `\( \pi \)` through the integral
-`$$ \frac{\pi}{4} = \int_0^1 \frac{1}{1+x^2} dx $$`
+### Calculation of `\( \pi \)` through the integral `\( f(x) = (1+x^2)^{-1} \)`
+`$$ \frac{\pi}{4} = \int_0^1 f(x) dx $$`
 
-### Numerical approximation `\( f(x) = \frac{1}{1+x^2} \)`
+### Numerical approximation
 `$$ \frac{\pi}{4} \approx \sum_i^N f(x_i^\ast) \Delta x_i $$`
 
 <img src="images/numerical_integral.jpg" style="width: 70%; float: left">
