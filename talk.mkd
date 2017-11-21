@@ -2,7 +2,7 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-##A crash course in
+##Introduction to
 #Parallel Programming
 
 .author[Stig Rune Jensen]
