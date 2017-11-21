@@ -1,4 +1,4 @@
-# talk_parallel_programming
+# Introduction to parallel programming
 
-[Crash course in parallel programming](http://cicero.xyz/v2/remark/github/stigrj/parallel-programming-talk/narvik/talk.mkd/)
-Talk given in Narvik, November 2017
+[Talk](http://cicero.xyz/v2/remark/github/stigrj/parallel-programming-talk/narvik/talk.mkd/)
+given in Narvik, November 2017
