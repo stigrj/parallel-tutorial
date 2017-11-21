@@ -2,7 +2,7 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-##A crash course in
+##Introduction to
 #Parallel Programming
 
 .author[Stig Rune Jensen]
@@ -15,7 +15,7 @@ class: center, middle, inverse
 ---
 
 template: inverse
-# Why?
+# Why parallel programming?
 
 ---
 
@@ -36,7 +36,7 @@ layout: false
 ---
 
 template: inverse
-# What?
+# What is parallel programming?
 
 ---
 
@@ -61,10 +61,12 @@ layout: false
 .left-column[
 ## What?
 ### Difficult
+### Efficiency
 ]
 .right-column[
 ### Amdahl's law of parallel efficiency
-- Parallelizing 95% of your code yields __at most__ 20-fold speedup
+- Parallelizing 95% of the work load in your code yields
+  __at most__ a 20-fold speedup
 
 <img src="images/amdahl.jpg" style="width: 100%; float: left">
 ]
@@ -75,6 +77,7 @@ layout: false
 .left-column[
 ## What?
 ### Difficult
+### Efficiency
 ]
 .right-column[
 ### Parallel programming involves
@@ -91,6 +94,7 @@ layout: false
 .left-column[
 ## What?
 ### Difficult
+### Efficiency
 ]
 .right-column[
 ### Parallel programming involves
@@ -223,7 +227,7 @@ layout: false
 ---
 
 template: inverse
-# How?
+# How to compute in parallel?
 
 ---
 
@@ -237,7 +241,6 @@ layout: false
 - Shared memory (single machine)
 - Work distribution through loops
 - No data distribution
-- Implicit synchronization
 - No communication
 - Thread based
 
@@ -299,7 +302,7 @@ layout: false
 - Communication necessary
 - Process based
 
-### Master/Slave
+### Master/Slave strategy
 
 <img src="images/parallel_mpi_1.jpg" style="width: 60%; float: left">
 
@@ -321,7 +324,7 @@ layout: false
 - Communication necessary
 - Process based
 
-### Data decomposition
+### Domain (data) decomposition strategy
 
 <img src="images/parallel_mpi_2.jpg" style="width: 60%; float: left">
 
@@ -356,8 +359,8 @@ layout: false
 
 ### Cons
 - Complicated implementation
-- User specified work/data distribution
-- User specified communication
+- Often require complete rewrite
+- Very much relies on the programmer
 - Diffucult to load balance
 - Communication overhead
 ]
@@ -366,7 +369,6 @@ layout: false
 
 template: inverse
 # Example
-## Calculation of \( \pi \)
 
 ---
 
@@ -375,70 +377,14 @@ layout: false
 ## Example
 ]
 .right-column[
-### Calculation of \( \pi \) using numerical integration
-- The area of the unit circle is
-\(A = \pi r^2 = \pi \)
-]
+### Calculation of `\( \pi \)` through the integral
+`$$ \frac{\pi}{4} = \int_0^1 \frac{1}{1+x^2} dx $$`
 
----
+### Numerical approximation `\( f(x) = (1+x^2)^{-1} \)`
+`$$ \frac{\pi}{4} \approx \sum_i^N f(x_i^\ast) \Delta x_i $$`
 
-layout: false
-.left-column[
-## Example
-### Serial
-]
-.right-column[
-Sequential implementation
-]
+<img src="images/numerical_integral.jpg" style="width: 70%; float: left">
 
----
-
-layout: false
-.left-column[
-## Example
-### Serial
-### OpenMP
-]
-.right-column[
-OpenMP features
-]
-
----
-
-layout: false
-.left-column[
-## Example
-### Serial
-### OpenMP
-]
-.right-column[
-OpenMP implementation
-]
-
----
-
-layout: false
-.left-column[
-## Example
-### Serial
-### OpenMP
-### MPI
-]
-.right-column[
-MPI features
-]
-
----
-
-layout: false
-.left-column[
-## Example
-### Serial
-### OpenMP
-### MPI
-]
-.right-column[
-MPI implementation
 ]
 
 ---
@@ -450,7 +396,7 @@ template: inverse
 
 layout: false
 .left-column[
-## How can we help?
+## Help?
 ### AUS
 ]
 .right-column[
