@@ -1,4 +1,4 @@
-# [Introduction to parallel programming](http://cicero.xyz/v2/remark/github/stigrj/parallel-tutorial/master/talk.mkd/)
+# [Introduction to parallel programming](http://cicero.xyz/v2/remark/github/stigrj/parallel-tutorial/narvik-2017/talk.mkd/)
 Talk given in Narvik, November 2017
 
 ### Building and running the serial code:
