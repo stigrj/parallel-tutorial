@@ -9,8 +9,7 @@ class: center, middle, inverse
 
 .date[22 November 2017, Narvik]
 
-.footnote[Slides available on [GitHub](https://github.com/stigrj/parallel-programming-talk)]
-
+.footnote[Slides available on [GitHub](https://github.com/stigrj/parallel-tutorial)]
 
 ---
 
